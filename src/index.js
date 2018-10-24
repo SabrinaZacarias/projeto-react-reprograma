@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css'
+
 function Link(props){
     return(
         <a className='link' href={props.url}>
@@ -7,10 +11,10 @@ function Link(props){
 }
 
 function Botao(props){
-    let classes = 'botao'
+    let classes = 'botao';
 
     if(props.desabilitado){
-        classes += ' botao--desabilitado'
+        classes += ' botao--desabilitado';
     }
 
     return(
