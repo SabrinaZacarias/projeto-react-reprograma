@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
 import Login from './paginas/Login/Login';
+import Conta from './paginas/Conta/Conta';
 
 const divisaoProjeto = document.getElementById('projeto');
 
+const pagina = <Conta/>
+
 //ReactDOM.render(elementoReact, tagHTML)
-ReactDOM.render(<Login/>, divisaoProjeto);
+ReactDOM.render(pagina, divisaoProjeto);
