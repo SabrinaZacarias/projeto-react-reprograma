@@ -3,21 +3,24 @@ import './Input.css'
 
 class Input extends React.Component{
     constructor(props){
-        super (props)
-        this.state = {
-            erro:''
-        }
+        super(props)
+        this.state = {erro: ''}
     }
-    
-    valida = evento =>{
+
+    valida = (evento) => {
         const alvo = evento.target
-        if (alvo.name === 'nome' && alvo.value.trim() === ''){
-            const state = {
-                erro: 'Campo obrigatório'
-            }
-            this.setState(state)
+        if(this.props.required && alvo.value.trim()=== ''){
+           this.setState({erro:'Campo obrigatório'})
+        } else if(this.props.minLength && alvo.value.length < this.props.minLength){
+            this.setState({erro: `Digite pelo menos ${this.props.minLength} caracteres`})
+        }else if(this.props.pattern && !this.props.pattern.test(alvo.value)){
+            this.setState({erro:'Email inválido'})
+        }else{
+            this.setState({erro:''})
         }
     }
+
+
 
     render() {
         return (
