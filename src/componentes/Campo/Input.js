@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import './Input.css'
 
-class Input extends React.Component{
+class Input extends Component{
     constructor(props){
         super(props)
         this.state = {erro: ''}
@@ -9,15 +9,21 @@ class Input extends React.Component{
 
     valida = (evento) => {
         const alvo = evento.target
-        if(this.props.required && alvo.value.trim()=== ''){
-           this.setState({erro:'Campo obrigatório'})
-        } else if(this.props.minLength && alvo.value.length < this.props.minLength){
-            this.setState({erro: `Digite pelo menos ${this.props.minLength} caracteres`})
-        }else if(this.props.pattern && !this.props.pattern.test(alvo.value)){
-            this.setState({erro:'Email inválido'})
-        }else{
-            this.setState({erro:''})
+        const {value, type} = alvo
+        const {required, minLength} = this.props
+        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        let mensagem = ''
+
+
+        if(required && value.trim()=== ''){
+           mensagem = 'Campo obrigatório'
+        } else if(minLength && value.length < minLength){
+            mensagem = `Digite pelo menos ${minLength} caracteres`
+        }else if(type === 'email' && !regex.test(value)){
+            mensagem = 'Email inválido'
         }
+            this.setState({erro: mensagem})
+        
     }
 
 
@@ -32,6 +38,7 @@ class Input extends React.Component{
                 name={this.props.name}
                 placeholder={this.props.placeholder}
                 onChange={this.valida}
+                onBlur={this.valida}
                 />
 
                 <p className='grupo__erro'>

@@ -18,8 +18,7 @@ function Conta () {
         <Input type='tel' id='telefone' name='telefone' placeholder='Telefone' required/>
 
         <Legenda htmlFor='email'>Email:</Legenda>
-        <Input type='email' id='email' name='email' placeholder='Email' required minLength={10}
-        pattern={/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/}/>
+        <Input type='email' id='email' name='email' placeholder='Email' required minLength={10}/>
 
         <Legenda htmlFor='senha'>Senha:</Legenda>
         <Input type='password' id='senha' name='senha' placeholder='Senha' required minLength={6}/>        
