@@ -12,13 +12,13 @@ function Conta () {
         <p>Envie o formulário para criar uma conta!</p>
 
         <Legenda htmlFor='nome'>Nome:</Legenda>
-        <Input type='text' id='nome' name='nome' placeholder='Nome' required/>
+        <Input type='text' id='nome' name='nome' placeholder='Nome' required minLength={10}/>
 
         <Legenda htmlFor='telefone'>Telefone:</Legenda>
         <Input type='tel' id='telefone' name='telefone' placeholder='Telefone' required/>
 
         <Legenda htmlFor='email'>Email:</Legenda>
-        <Input type='email' id='email' name='email' placeholder='Email' required minLength={10}/>
+        <Input type='email' id='email' name='email' placeholder='Email' required />
 
         <Legenda htmlFor='senha'>Senha:</Legenda>
         <Input type='password' id='senha' name='senha' placeholder='Senha' required minLength={6}/>        

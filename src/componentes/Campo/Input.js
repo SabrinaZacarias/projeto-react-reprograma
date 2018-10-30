@@ -4,7 +4,18 @@ import './Input.css'
 class Input extends Component{
     constructor(props){
         super(props)
-        this.state = {erro: ''}
+        this.state = {
+            modificado: false,
+            erro: ''}
+    }
+
+    temErro() {
+        if(!this.state.modificado || this.state.erro){
+            return true
+        } else{
+            return false
+        }
+        
     }
 
     valida = (evento) => {
@@ -15,14 +26,16 @@ class Input extends Component{
         let mensagem = ''
 
 
-        if(required && value.trim()=== ''){
+        if(required && value.trim() === ''){
            mensagem = 'Campo obrigatório'
         } else if(minLength && value.length < minLength){
             mensagem = `Digite pelo menos ${minLength} caracteres`
         }else if(type === 'email' && !regex.test(value)){
             mensagem = 'Email inválido'
         }
-            this.setState({erro: mensagem})
+
+        this.setState({modificado: true, erro: mensagem}, this.props.onChange)
+
         
     }
 
