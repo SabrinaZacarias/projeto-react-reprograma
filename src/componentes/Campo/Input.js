@@ -4,9 +4,15 @@ import './Input.css'
 class Input extends Component{
     constructor(props){
         super(props)
+
+        this.valor = ''
         this.state = {
             modificado: false,
             erro: ''}
+    }
+
+    getValor(){
+        return this.valor
     }
 
     temErro() {
@@ -21,6 +27,7 @@ class Input extends Component{
     valida = (evento) => {
         const alvo = evento.target
         const {value, type} = alvo
+        this.valor = value
         const {required, minLength} = this.props
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         let mensagem = ''
