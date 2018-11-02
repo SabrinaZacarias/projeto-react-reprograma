@@ -10,28 +10,61 @@ class Menu extends Component{
         }
     }
 
+    abreOuFechaMenu = () => {
+        
+        if(this.state.aberto){
+            this.setState({aberto:false})
+        }else{
+            this.setState({aberto:true})
+        }
+
+    }
+
+    sair = () => {
+        this.abreOuFechaMenu()
+        this.props.deslogaUsuario()
+    }
+
     render(){
+        let classesDoBotao = 'navbar-menu__botao'
+        let classesDasOpcoes = 'navbar-menu__opcoes'
+
+        if (this.state.aberto){
+            classesDoBotao += ' navbar-menu__botao--aberto'
+            classesDasOpcoes += ' navbar-menu__opcoes--aberto'
+        }
+
         return(
             <nav className='navbar-menu'>
-                <a className='navbar-menu__botao'>
+                <a className={classesDoBotao} onClick={this.abreOuFechaMenu}>
                     Menu
                 </a>
-                <ul className='navbar-menu__opcoes'>
+                <ul className={classesDasOpcoes}>
                     <li>
-                        <NavLink to='/quem-somos' activeClassName='navbar-menu__opcoes--ativo'>
+                        <NavLink to='/quem-somos' activeClassName='navbar-menu__opcoes--ativo'  onClick={this.abreOuFechaMenu}>
                             Quem somos
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/contato' activeClassName='navbar-menu__opcoes--ativo'>
+                        <NavLink to='/contato' activeClassName='navbar-menu__opcoes--ativo'  onClick={this.abreOuFechaMenu}>
                             Contato
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to='/login' activeClassName='navbar-menu__opcoes--ativo'>
+                    {this.props.usuario ? (
+                        <li>
+                        <NavLink to='/login' activeClassName='navbar-menu__opcoes--ativo'  onClick={this.sair} >
                             Sair
                         </NavLink>
+                        </li>
+
+                    ) : (
+
+                    <li>
+                        <NavLink to='/login' activeClassName='navbar-menu__opcoes--ativo'  onClick={this.abreOuFechaMenu}>
+                            Login
+                        </NavLink>
                     </li>
+                    )}
                 </ul>
             </nav>
         )
