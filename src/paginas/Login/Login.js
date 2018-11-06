@@ -22,7 +22,10 @@ class Login extends Component {
             email: campoEmail.getValor(),
             senha: campoSenha.getValor()
         }
-        this.props.onEnviar(dados)
+        console.log('props', this.props)
+        this.props.logaUsuario(dados)
+        
+        
 
         this.props.historico.push('/')
     }
